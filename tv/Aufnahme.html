@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Jackbox.DE Test-Center</title>
+  <meta name="description"
+    content="Im Jackbox.DE Testcenter kannst du auf 8 verschiedene Controller gleichzeitig zugreifen. Alle Controller laufen auf der neusten Version des Jackbox.DE Controllers.">
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+  <div id="streams" style="text-align: center;"></div>
+
+  <script>
+    const namen = [
+  "Anna", "Ben", "Clara", "David", "Emma", "Felix", "Hannah", "Jonas", "Lena", "Leon", "Lucas", "Marie", "Max", "Mia", "Noah", "Paul", "Sophie", "Tim", "Laura", "Finn", "Alex", "Amelie", "Anton", "Charlotte", "Daniel", "Elias", "Elena", "Emil", "Franzi", "Greta", "Henry", "Isabella", "Jakob", "Johanna", "Julian", "Julie", "Karl", "Kathi", "Kevin", "Lea", "Louis", "Marlene", "Matteo", "Moritz", "Nele", "Nico", "Nina", "Oskar", "Philipp", "Rafael", "Ronja", "Samuel", "Sarah", "Sebi", "Theresa", "Tobias", "Valentin", "Vanessa", "Victoria", "Vincent", "Wilhelm", "Yannik", "Zoe", "Alina", "Benni", "Carolin", "Dominik", "Helena", "Maxi", "Tobi", "Lilli", "Michi", "Andi", "Chrissi", "Flo", "Steffi", "Kathi", "Seppi", "Franzi", "Pia", "Miri", "Juli", "Nati", "Basti", "Olli", "Fabi", "Rosi", "Uli", "Conni", "Theo", "Pepe", "Lotti", "Susi", "Hugo", "Josi", "Mats", "Nils", "Arne", "Eric", "Pascal", "Jay"
+]
+
+    const shuffle = arr => {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[arr[i], arr[j]] = [arr[j], arr[i]]
+      }
+      return arr
+    }
+
+    const ausgewaehlt = shuffle([...namen]).slice(0, 8)
+    const container = document.getElementById("streams")
+
+    ausgewaehlt.forEach((name, i) => {
+      const iframe = document.createElement("iframe")
+      iframe.id = `embed_jbg_${i + 1}`
+      iframe.src = `https://www.jackbox.tv?name=${encodeURIComponent(name)}&ns=chrome${i + 1}&s=live&no-cb`
+      iframe.height = "640"
+      iframe.width = "24%"
+      iframe.className = "stream"
+      iframe.allowFullscreen = true
+      iframe.frameBorder = "0"
+      container.appendChild(iframe)
+      if (i === 3) container.appendChild(document.createElement("br"))
+    })
+  </script>
+
+  <style>
+    body {
+      background-color: #212132;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #212132;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #4254f4;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #421ef4;
+    }
+  </style>
+</body>
+
+</html>
